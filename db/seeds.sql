@@ -10,7 +10,7 @@ VALUES
     ("Engineering");
 
 INSERT INTO
-    role (title, salary, department_id)
+    role (role_name, salary, department_id)
 VALUES
     (
         "Sales Lead",

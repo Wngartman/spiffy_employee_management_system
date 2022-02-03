@@ -12,15 +12,14 @@ CREATE TABLE department (
 CREATE TABLE role (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   role_name VARCHAR(30) UNIQUE NOT NULL,
-  salary 
-  department_id
+  salary INT NOT NULL,
+  department_id INT NOT NULL
 );
 
 CREATE TABLE employee (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  first_name
-  last_name
-  role_id
-  mananger_id
+  first_name VARCHAR(30) UNIQUE NOT NULL,
+  last_name VARCHAR(30) UNIQUE NOT NULL,
+  role_id INT NOT NULL,
+  mananger_id INT
 );
-

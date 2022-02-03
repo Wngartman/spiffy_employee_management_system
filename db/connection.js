@@ -7,8 +7,9 @@ const connection = mysql.createConnection({
   database: "employees"
 });
 
-connection.connect(function(err){
-  if (err) throw err;
-});
 
-module.exports = sequelize;
+// connection.connect(function(err){
+//   if (err) throw err;
+// });
+
+module.exports = connection;
