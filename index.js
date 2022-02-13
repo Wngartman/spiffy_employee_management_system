@@ -8,7 +8,7 @@ const connection = require("./db/connection");
 function menu() {
     prompt([
         {
-            type: 'list',
+            type: 'list', 
             name: 'choice',
             message: 'What would you like to do?',
             choices: [
@@ -63,7 +63,7 @@ function menu() {
             addNewRoles();
         }
         if (choice === "NEW_EMPLOYEE") {
-            addNewRoles();
+            addNewEmployees();
         }
     })
 }
@@ -77,13 +77,13 @@ function viewEmployees() {
         })
         .then(() => menu());
 }
-
+// Quit function
 function quit() {
     console.log("Goodbye!");
     process.exit();
 }
 menu();
-
+// View departments
 function viewDepartments() {
     db.findAllDepartments()
         .then(([rows]) => {
@@ -93,7 +93,7 @@ function viewDepartments() {
         })
         .then(() => menu());
 }
-
+// View the roles
 function viewRoles() {
     db.findAllRoles()
         .then(([rows]) => {
@@ -103,7 +103,7 @@ function viewRoles() {
         })
         .then(() => menu());
 }
-
+// Add new department
 function addNewDepartments() {
     prompt([
         {
@@ -118,7 +118,7 @@ function addNewDepartments() {
 
 }
 
-
+// Add a new role
 function addNewRoles() {
     prompt([
         {
@@ -144,28 +144,36 @@ function addNewRoles() {
         })
         .then(() => menu())
 }
-function addNewEmployee() {
+// Add an new employee
+function addNewEmployees() {
     prompt([
         {
-            name: "role_name",
+            name: "first_name",
             type: "input",
-            message: "What is their title?"
+            message: "What is their first name?"
         },
         {
-            name: "salary",
+            name: "last_name",
             type: "input",
-            message: "What is their salary?"
+            message: "What is their last name?"
         },
         {
-            name: "department_id",
+            name: "role_id",
             type: "input",
-            message: "What is their department id?",
+            message: "What is their role id?",
+        },
+        {
+            name: "manager_id",
+            type: "input",
+            message: "What is their manager id?",
         }
 
     ])
         .then(answer => {
-            roleRes = answer
-            db.addNewRole(roleRes)
+            empRes = answer
+            db.addNewEmployee(empRes)
         })
+
+        
         .then(() => menu())
 }

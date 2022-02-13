@@ -38,8 +38,12 @@ class DB {
         );
 
     }
-    // Create a new employee
-    createNewEmployee() {
+    addNewEmployee() {
+        return this.connection.promise().query(
+            "INSERT INTO employee SET ?",
+            empRes,
+            console.log(`${empRes.first_name + empRes.last_name} was added to employees!`)
+        );
 
     }
 
