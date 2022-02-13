@@ -1,7 +1,9 @@
+const { response } = require("express");
 const { prompt } = require("inquirer");
-const { addNewDepartment } = require("./db/db");
+const { addNewDepartment, addNewRole } = require("./db/db");
 const db = require("./db/db");
 require('console.table');
+const connection = require("./db/connection");
 
 function menu() {
     prompt([
@@ -52,10 +54,16 @@ function menu() {
             viewDepartments();
         }
         if (choice === "ALL_ROLES") {
-            viewRoles()
+            viewRoles();
         }
         if (choice === "NEW_DEPARTMENT") {
-            addNewDepartments()
+            addNewDepartments();
+        }
+        if (choice === "NEW_ROLE") {
+            addNewRoles();
+        }
+        if (choice === "NEW_EMPLOYEE") {
+            addNewRoles();
         }
     })
 }
@@ -104,11 +112,60 @@ function addNewDepartments() {
             message: "What department would you like to add?",
         }]).then(answer => {
             deptRes = answer.DEPARTMENT_NAME
-            // console.log(deptRes)
-            db.addNewDepartment(deptRes)})
-        // .then(db.addNewDepartment())
-            .then(() => menu())
-    
+            db.addNewDepartment(deptRes)
+        })
+        .then(() => menu())
+
 }
 
-// module.exports = deptRes
+
+function addNewRoles() {
+    prompt([
+        {
+            name: "role_name",
+            type: "input",
+            message: "What is their title?"
+        },
+        {
+            name: "salary",
+            type: "input",
+            message: "What is their salary?"
+        },
+        {
+            name: "department_id",
+            type: "input",
+            message: "What is their department id?",
+        }
+
+    ])
+        .then(answer => {
+            roleRes = answer
+            db.addNewRole(roleRes)
+        })
+        .then(() => menu())
+}
+function addNewEmployee() {
+    prompt([
+        {
+            name: "role_name",
+            type: "input",
+            message: "What is their title?"
+        },
+        {
+            name: "salary",
+            type: "input",
+            message: "What is their salary?"
+        },
+        {
+            name: "department_id",
+            type: "input",
+            message: "What is their department id?",
+        }
+
+    ])
+        .then(answer => {
+            roleRes = answer
+            db.addNewRole(roleRes)
+        })
+        .then(() => menu())
+}
